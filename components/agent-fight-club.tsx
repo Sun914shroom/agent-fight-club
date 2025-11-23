@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Toaster } from "./ui/sonner"
 import { toast } from "sonner"
 import { Badge } from "@/components/ui/badge"
+import CountUp from "react-countup"
 
 // --- TYPES ---
 type GameState = "LOBBY" | "FIGHT" | "VOTE" | "WINNER"
@@ -80,6 +81,14 @@ export default function AgentFightClub() {
   const [elonHitFlash, setElonHitFlash] = useState(false)
   const [marxHitFlash, setMarxHitFlash] = useState(false)
   const [screenShake, setScreenShake] = useState(false)
+  
+  // Betting System States
+  const [totalVol, setTotalVol] = useState(34795612)
+  const [elonPool, setElonPool] = useState(12420201)
+  const [marxPool, setMarxPool] = useState(22375411)
+  const [userBetAmount, setUserBetAmount] = useState(100)
+  const [showWalletModal, setShowWalletModal] = useState(false)
+  const [betTarget, setBetTarget] = useState<"ELON" | "MARX" | null>(null)
 
   // Unified Global Control Logic (Debug/Demo Mode)
   useEffect(() => {
@@ -105,31 +114,38 @@ export default function AgentFightClub() {
           let speaker = ""
           let text = ""
           let damage = 0
+          let audioFile = ""
           
           if (nextStep === 1) {
             speaker = "ELON"
             text = "Haha, broke commie! You lived off handouts while I build empires. Web3 is pure freedom—WAGMI, you're NGMI!"
             damage = Math.floor(Math.random() * 100000 + 100000)
+            audioFile = "/elon-1.mp3"
           } else if (nextStep === 2) {
             speaker = "MARX"
             text = "Vampire capitalist! Sucking blood from proletariat with your scam coins. You are selling digital air!"
             damage = Math.floor(Math.random() * 100000 + 100000)
+            audioFile = "/marx-1.mp3"
           } else if (nextStep === 3) {
             speaker = "ELON"
             text = "I create value! DOGE flips fiat. Free market wins, no lazy unions needed!"
             damage = Math.floor(Math.random() * 100000 + 100000)
+            audioFile = "/elon-2.mp3"
           } else if (nextStep === 4) {
             speaker = "MARX"
             text = "Staking is theft! Rug pulls are bourgeois betrayal! United against whale exploitation!"
             damage = Math.floor(Math.random() * 100000 + 100000)
+            audioFile = "/marx-2.mp3"
           } else if (nextStep === 5) {
             speaker = "ELON"
             text = "Buyout time! Minting your bearded ass as an NFT—owning you forever. Shut your FUD mouth!"
             damage = Math.floor(Math.random() * 100000 + 100000)
+            audioFile = "/elon-3.mp3"
           } else if (nextStep === 6) {
             speaker = "MARX"
             text = "Hard Fork revolution! 51% attack incoming! Redistribute the wallet! Seize the blockchain!"
             damage = Math.floor(Math.random() * 100000 + 100000)
+            audioFile = "/marx-3.mp3"
           }
           
           // Show thinking bubble immediately
@@ -146,6 +162,12 @@ export default function AgentFightClub() {
                 text: text
               })
               setIsThinking(false)
+              
+              // Play audio for this dialogue
+              if (audioFile) {
+                const audio = new Audio(audioFile)
+                audio.play().catch(err => console.log("Audio play failed:", err))
+              }
               
               // Fire projectile attack!
               setProjectile({ id: Date.now(), from: speaker as "ELON" | "MARX" })
@@ -262,6 +284,9 @@ export default function AgentFightClub() {
       // Trigger Elon upgrade after 1s
       setTimeout(() => {
         setElonUpgraded(true)
+        // Play upgrade sound
+        const upgradeAudio = new Audio("/upgrade.mp3")
+        upgradeAudio.play()
       }, 1000)
     }
   }, [endingPhase])
@@ -304,6 +329,41 @@ export default function AgentFightClub() {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     }).format(value)} $GAS`
+  }
+  
+  // Betting System Handlers
+  const handleOpenBetModal = (target: "ELON" | "MARX") => {
+    setBetTarget(target)
+    setUserBetAmount(100) // Reset to default
+    setShowWalletModal(true)
+  }
+  
+  const handleIncreaseBet = () => {
+    setUserBetAmount(prev => prev + 10)
+  }
+  
+  const handleDecreaseBet = () => {
+    setUserBetAmount(prev => Math.max(10, prev - 10)) // Minimum 10
+  }
+  
+  const handleConfirmBet = () => {
+    if (betTarget === "ELON") {
+      setElonPool(prev => prev + userBetAmount)
+    } else if (betTarget === "MARX") {
+      setMarxPool(prev => prev + userBetAmount)
+    }
+    setTotalVol(prev => prev + userBetAmount)
+    
+    // Play slot machine sound
+    const slotAudio = new Audio("/slot-machine.mp3")
+    slotAudio.play()
+    
+    // Show success toast
+    toast.success(`✅ Transaction Confirmed: ${userBetAmount} $GAS Sent`)
+    
+    // Close modal
+    setShowWalletModal(false)
+    setBetTarget(null)
   }
 
   return (
@@ -374,7 +434,12 @@ export default function AgentFightClub() {
                       IS WEB3 A SCAM?
                     </h2>
                     <p className="text-white font-mono text-base sm:text-lg md:text-xl font-bold">
-                      💰34,795,612 $GAS Vol
+                      💰<CountUp 
+                        end={totalVol} 
+                        duration={1.5} 
+                        separator="," 
+                        preserveValue={true}
+                      /> $GAS Vol
                     </p>
                   </div>
                   
@@ -437,7 +502,14 @@ export default function AgentFightClub() {
                           : "text-sm font-bold"
                       }`}>
                         <span className="text-cyan-400 font-mono">LIQUIDITY</span>
-                        <span className="text-cyan-400 font-mono">{formatMoney(elonLiquidity)}</span>
+                        <span className="text-cyan-400 font-mono">
+                          <CountUp 
+                            end={elonLiquidity} 
+                            duration={1.5} 
+                            separator="," 
+                            preserveValue={true}
+                          /> $GAS
+                        </span>
                       </div>
                       <div className={`bg-slate-900 border-cyan-500 relative overflow-hidden transition-all duration-300 ${
                         hoveredLiquidity === "ELON"
@@ -547,7 +619,14 @@ export default function AgentFightClub() {
                           : "text-sm font-bold"
                       }`}>
                         <span className="text-red-500 font-mono">LIQUIDITY</span>
-                        <span className="text-red-500 font-mono">{formatMoney(marxLiquidity)}</span>
+                        <span className="text-red-500 font-mono">
+                          <CountUp 
+                            end={marxLiquidity} 
+                            duration={1.5} 
+                            separator="," 
+                            preserveValue={true}
+                          /> $GAS
+                        </span>
                       </div>
                       <div className={`bg-slate-900 border-red-500 relative overflow-hidden transition-all duration-300 ${
                         hoveredLiquidity === "MARX"
@@ -610,31 +689,43 @@ export default function AgentFightClub() {
                       {/* Musk Side (Cyan) */}
                       <div 
                         className="bg-cyan-600 border-y-4 border-l-4 border-cyan-400 flex items-center justify-between px-6"
-                        style={{ width: `${(12420201 / (12420201 + 22375411)) * 100}%` }}
+                        style={{ width: `${(elonPool / (elonPool + marxPool)) * 100}%` }}
                       >
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
+                          onClick={() => handleOpenBetModal("ELON")}
                           className="px-6 py-3 bg-cyan-700 hover:bg-cyan-600 text-white font-bold border-2 border-cyan-300 text-xs sm:text-sm shadow-lg font-mono"
                         >
                           BET ON MUSK
                         </motion.button>
                         <div className="text-white font-mono text-lg font-bold">
-                          {formatMoney(12420201)}
+                          <CountUp 
+                            end={elonPool} 
+                            duration={1.5} 
+                            separator="," 
+                            preserveValue={true}
+                          /> $GAS
                         </div>
                       </div>
                       
                       {/* Marx Side (Red) */}
                       <div 
                         className="bg-red-600 border-y-4 border-r-4 border-red-400 flex items-center justify-between px-6"
-                        style={{ width: `${(22375411 / (12420201 + 22375411)) * 100}%` }}
+                        style={{ width: `${(marxPool / (elonPool + marxPool)) * 100}%` }}
                       >
                         <div className="text-white font-mono text-lg font-bold">
-                          {formatMoney(22375411)}
+                          <CountUp 
+                            end={marxPool} 
+                            duration={1.5} 
+                            separator="," 
+                            preserveValue={true}
+                          /> $GAS
                         </div>
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
+                          onClick={() => handleOpenBetModal("MARX")}
                           className="px-6 py-3 bg-red-700 hover:bg-red-600 text-white font-bold border-2 border-red-300 text-xs sm:text-sm shadow-lg font-mono"
                         >
                           BET ON MARX
@@ -645,6 +736,91 @@ export default function AgentFightClub() {
                 </div>
               </div>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* SPOONOS WALLET MODAL */}
+      <AnimatePresence>
+        {showWalletModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-sm"
+            onClick={() => setShowWalletModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-black/90 backdrop-blur-xl border border-[#00E599] rounded-lg p-8 max-w-md w-full mx-4 shadow-[0_0_50px_rgba(0,229,153,0.3)]"
+            >
+              {/* Header */}
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-[#00E599] font-mono mb-2">
+                  SpoonOS Wallet Request
+                </h2>
+                <div className="text-slate-400 text-sm font-mono space-y-1">
+                  <p>Interact with: <span className="text-white">Agent Fight Club</span></p>
+                  <p>Action: <span className="text-white">Bet on {betTarget}</span></p>
+                </div>
+              </div>
+
+              {/* Amount Selector */}
+              <div className="mb-6">
+                <label className="block text-slate-400 text-sm font-mono mb-3">
+                  Amount
+                </label>
+                <div className="flex items-center justify-center gap-4">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={handleDecreaseBet}
+                    className="w-12 h-12 bg-slate-800 hover:bg-slate-700 border-2 border-slate-600 rounded-lg text-white font-bold text-2xl flex items-center justify-center"
+                  >
+                    -
+                  </motion.button>
+                  
+                  <div className="flex-1 text-center">
+                    <div className="text-5xl font-bold text-white font-mono">
+                      {userBetAmount}
+                    </div>
+                    <div className="text-[#00E599] text-lg font-mono mt-1">
+                      $GAS
+                    </div>
+                  </div>
+                  
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={handleIncreaseBet}
+                    className="w-12 h-12 bg-slate-800 hover:bg-slate-700 border-2 border-slate-600 rounded-lg text-white font-bold text-2xl flex items-center justify-center"
+                  >
+                    +
+                  </motion.button>
+                </div>
+              </div>
+
+              {/* Gas Fee */}
+              <div className="mb-6 text-center">
+                <p className="text-slate-500 text-xs font-mono">
+                  Gas Fee: <span className="text-slate-400">0.00042 $GAS</span>
+                </p>
+              </div>
+
+              {/* Confirm Button */}
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleConfirmBet}
+                className="w-full py-4 bg-[#00E599] hover:bg-[#00CC88] text-black font-bold text-lg rounded-lg font-mono shadow-lg shadow-[#00E599]/50 transition-colors"
+              >
+                SIGN & PAY
+              </motion.button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
