@@ -74,6 +74,12 @@ export default function AgentFightClub() {
   const [elonUpgraded, setElonUpgraded] = useState(false)
   const [elonBetAmount, setElonBetAmount] = useState(12420201)
   const [marxBetAmount, setMarxBetAmount] = useState(22375411)
+  
+  // Combat Animation States
+  const [projectile, setProjectile] = useState<{ id: number; from: "ELON" | "MARX" } | null>(null)
+  const [elonHitFlash, setElonHitFlash] = useState(false)
+  const [marxHitFlash, setMarxHitFlash] = useState(false)
+  const [screenShake, setScreenShake] = useState(false)
 
   // Unified Global Control Logic (Debug/Demo Mode)
   useEffect(() => {
@@ -133,7 +139,7 @@ export default function AgentFightClub() {
               text: "..." // Thinking placeholder
             })
             
-            // After 1 second, show actual dialogue and apply damage
+            // After 1 second, show actual dialogue and fire projectile
             setTimeout(() => {
               setCurrentDialogue({
                 speaker: speaker,
@@ -141,12 +147,34 @@ export default function AgentFightClub() {
               })
               setIsThinking(false)
               
-              // Apply damage to opponent
-              if (speaker === "ELON") {
-                setMarxLiquidity(prev => Math.max(0, prev - damage))
-              } else if (speaker === "MARX") {
-                setElonLiquidity(prev => Math.max(0, prev - damage))
-              }
+              // Fire projectile attack!
+              setProjectile({ id: Date.now(), from: speaker as "ELON" | "MARX" })
+              
+              // After 0.4s (projectile flight time), trigger impact effects
+              setTimeout(() => {
+                // Remove projectile
+                setProjectile(null)
+                
+                // Trigger hit flash on target
+                if (speaker === "ELON") {
+                  setMarxHitFlash(true)
+                  setTimeout(() => setMarxHitFlash(false), 100)
+                } else if (speaker === "MARX") {
+                  setElonHitFlash(true)
+                  setTimeout(() => setElonHitFlash(false), 100)
+                }
+                
+                // Trigger screen shake
+                setScreenShake(true)
+                setTimeout(() => setScreenShake(false), 200)
+                
+                // Apply damage to opponent
+                if (speaker === "ELON") {
+                  setMarxLiquidity(prev => Math.max(0, prev - damage))
+                } else if (speaker === "MARX") {
+                  setElonLiquidity(prev => Math.max(0, prev - damage))
+                }
+              }, 400)
             }, 1000)
           }
         } else if (gameState === "VOTE") {
@@ -292,8 +320,13 @@ export default function AgentFightClub() {
           <motion.div
             key="fight"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ 
+              opacity: 1,
+              x: screenShake ? [-2, 2, -2, 2, 0] : 0,
+              y: screenShake ? [-1, 1, -1, 1, 0] : 0
+            }}
             exit={{ opacity: 0 }}
+            transition={{ duration: screenShake ? 0.2 : 0.3 }}
             className="fixed inset-0 z-[100] flex flex-col"
           >
             {/* Background Image with Overlay */}
@@ -322,9 +355,9 @@ export default function AgentFightClub() {
               </header>
 
               {/* Main Fight Area */}
-              <div className="flex-1 flex flex-col items-center justify-between py-8">
+              <div className="flex-1 flex flex-col items-center justify-between py-8 px-4">
                 {/* Title Section with NO/YES Labels */}
-                <div className="w-full flex items-center justify-center gap-8 sm:gap-12 md:gap-16 px-4">
+                <div className="w-full flex items-center justify-center gap-8 sm:gap-12 md:gap-16">
                   {/* NO Label - Aligned with Musk */}
                   <div className="flex-shrink-0">
                     <span className="text-cyan-400 font-bold text-6xl sm:text-7xl md:text-8xl font-press-start drop-shadow-[0_0_15px_rgba(34,211,238,0.9)]" style={{ fontFamily: 'Knewave, cursive' }}>
@@ -355,6 +388,41 @@ export default function AgentFightClub() {
 
                 {/* Arena - Characters with Liquidity Bars */}
                 <div className="w-full flex items-center justify-between px-8 sm:px-12 md:px-16 relative">
+                  {/* Flying Projectile */}
+                  <AnimatePresence>
+                    {projectile && (
+                      <motion.div
+                        key={projectile.id}
+                        initial={{ 
+                          x: projectile.from === "ELON" ? -200 : 200,
+                          y: 0,
+                          opacity: 0,
+                          scale: 0.5
+                        }}
+                        animate={{ 
+                          x: projectile.from === "ELON" ? 200 : -200,
+                          y: 0,
+                          opacity: 1,
+                          scale: 1,
+                          rotate: projectile.from === "ELON" ? 360 : -360
+                        }}
+                        exit={{ 
+                          opacity: 0,
+                          scale: 2
+                        }}
+                        transition={{ 
+                          duration: 0.4,
+                          ease: "easeOut"
+                        }}
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
+                      >
+                        <div className="text-6xl drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]">
+                          {projectile.from === "ELON" ? "🚀" : "📕"}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                   {/* Elon Character */}
                   <div className="flex flex-col items-center relative">
                     {/* Liquidity Bar */}
@@ -391,7 +459,7 @@ export default function AgentFightClub() {
                       onMouseEnter={() => setHoveredChar("ELON")}
                       onMouseLeave={() => setHoveredChar(null)}
                     >
-                      <img 
+                      <motion.img 
                         src="/elon_pixel.png" 
                         alt="Elon Musk" 
                         className={`w-48 sm:w-64 md:w-80 h-auto transition-all duration-300 ${
@@ -399,6 +467,13 @@ export default function AgentFightClub() {
                             ? "scale-110 drop-shadow-[0_0_30px_rgba(34,211,238,0.8)]" 
                             : ""
                         }`}
+                        animate={{
+                          x: elonHitFlash ? [-5, 5, -5, 5, 0] : 0,
+                          filter: elonHitFlash 
+                            ? "brightness(1.5) sepia(1) hue-rotate(-50deg)" 
+                            : "brightness(1) sepia(0) hue-rotate(0deg)"
+                        }}
+                        transition={{ duration: elonHitFlash ? 0.2 : 0.3 }}
                       />
                       
                       {/* Hover Stats Card */}
@@ -494,7 +569,7 @@ export default function AgentFightClub() {
                       onMouseEnter={() => setHoveredChar("MARX")}
                       onMouseLeave={() => setHoveredChar(null)}
                     >
-                      <img 
+                      <motion.img 
                         src="/marx_pixel.png" 
                         alt="Karl Marx" 
                         className={`w-42 sm:w-56 md:w-70 h-auto transition-all duration-300 ${
@@ -502,6 +577,13 @@ export default function AgentFightClub() {
                             ? "scale-110 drop-shadow-[0_0_30px_rgba(239,68,68,0.8)]" 
                             : ""
                         }`}
+                        animate={{
+                          x: marxHitFlash ? [-5, 5, -5, 5, 0] : 0,
+                          filter: marxHitFlash 
+                            ? "brightness(1.5) sepia(1) hue-rotate(-50deg)" 
+                            : "brightness(1) sepia(0) hue-rotate(0deg)"
+                        }}
+                        transition={{ duration: marxHitFlash ? 0.2 : 0.3 }}
                       />
                       
                       {/* Hover Stats Card */}
@@ -522,39 +604,42 @@ export default function AgentFightClub() {
 
                 {/* Betting Footer Bar */}
                 <div className="w-full">
-                  <div className="h-16 flex items-stretch">
-                    {/* Musk Side (Cyan) */}
-                    <div 
-                      className="bg-cyan-600 border-y-4 border-l-4 border-cyan-400 flex items-center justify-between px-4 sm:px-6"
-                      style={{ width: `${(12420201 / (12420201 + 22375411)) * 100}%` }}
-                    >
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="h-full px-4 sm:px-6 bg-cyan-700 hover:bg-cyan-600 text-white font-bold border-2 border-cyan-300 text-xs sm:text-sm shadow-lg font-mono"
+                  <div className="relative h-12 flex items-center">
+                    {/* Background Bar */}
+                    <div className="absolute inset-0 flex">
+                      {/* Musk Side (Cyan) */}
+                      <div 
+                        className="bg-cyan-600 border-y-4 border-l-4 border-cyan-400 flex items-center justify-between px-6"
+                        style={{ width: `${(12420201 / (12420201 + 22375411)) * 100}%` }}
                       >
-                        BET ON MUSK
-                      </motion.button>
-                      <div className="text-white font-mono text-sm sm:text-lg font-bold">
-                        {formatMoney(12420201)}
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="px-6 py-3 bg-cyan-700 hover:bg-cyan-600 text-white font-bold border-2 border-cyan-300 text-xs sm:text-sm shadow-lg font-mono"
+                        >
+                          BET ON MUSK
+                        </motion.button>
+                        <div className="text-white font-mono text-lg font-bold">
+                          {formatMoney(12420201)}
+                        </div>
                       </div>
-                    </div>
-                    
-                    {/* Marx Side (Red) */}
-                    <div 
-                      className="bg-red-600 border-y-4 border-r-4 border-red-400 flex items-center justify-between px-4 sm:px-6"
-                      style={{ width: `${(22375411 / (12420201 + 22375411)) * 100}%` }}
-                    >
-                      <div className="text-white font-mono text-sm sm:text-lg font-bold">
-                        {formatMoney(22375411)}
-                      </div>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="h-full px-4 sm:px-6 bg-red-700 hover:bg-red-600 text-white font-bold border-2 border-red-300 text-xs sm:text-sm shadow-lg font-mono"
+                      
+                      {/* Marx Side (Red) */}
+                      <div 
+                        className="bg-red-600 border-y-4 border-r-4 border-red-400 flex items-center justify-between px-6"
+                        style={{ width: `${(22375411 / (12420201 + 22375411)) * 100}%` }}
                       >
-                        BET ON MARX
-                      </motion.button>
+                        <div className="text-white font-mono text-lg font-bold">
+                          {formatMoney(22375411)}
+                        </div>
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="px-6 py-3 bg-red-700 hover:bg-red-600 text-white font-bold border-2 border-red-300 text-xs sm:text-sm shadow-lg font-mono"
+                        >
+                          BET ON MARX
+                        </motion.button>
+                      </div>
                     </div>
                   </div>
                 </div>
