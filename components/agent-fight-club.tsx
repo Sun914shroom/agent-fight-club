@@ -108,27 +108,27 @@ export default function AgentFightClub() {
           
           if (nextStep === 1) {
             speaker = "ELON"
-            text = "Haha, broke commie! You lived off handouts while I build empires. Web3's pure freedom—WAGMI!"
+            text = "Haha, broke commie! You lived off handouts while I build empires. Web3 is pure freedom—WAGMI, you're NGMI!"
             damage = Math.floor(Math.random() * 100000 + 100000)
           } else if (nextStep === 2) {
             speaker = "MARX"
-            text = "Vampire capitalist! Sucking blood from proletariat with your scam coins."
+            text = "Vampire capitalist! Sucking blood from proletariat with your scam coins. You are selling digital air!"
             damage = Math.floor(Math.random() * 100000 + 100000)
           } else if (nextStep === 3) {
             speaker = "ELON"
-            text = "I create value! DOGE flips fiat. Free market wins!"
+            text = "I create value! DOGE flips fiat. Free market wins, no lazy unions needed!"
             damage = Math.floor(Math.random() * 100000 + 100000)
           } else if (nextStep === 4) {
             speaker = "MARX"
-            text = "Staking is theft! Rug pulls are bourgeois betrayal!"
+            text = "Staking is theft! Rug pulls are bourgeois betrayal! United against whale exploitation!"
             damage = Math.floor(Math.random() * 100000 + 100000)
           } else if (nextStep === 5) {
             speaker = "ELON"
-            text = "Buyout time! Minting your ideology as a memecoin. Market cap: Zero!"
+            text = "Buyout time! Minting your bearded ass as an NFT—owning you forever. Shut your FUD mouth!"
             damage = Math.floor(Math.random() * 100000 + 100000)
           } else if (nextStep === 6) {
             speaker = "MARX"
-            text = "Hard Fork revolution! 51% attack incoming!"
+            text = "Hard Fork revolution! 51% attack incoming! Redistribute the wallet! Seize the blockchain!"
             damage = Math.floor(Math.random() * 100000 + 100000)
           }
           
