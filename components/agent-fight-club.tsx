@@ -76,6 +76,11 @@ export default function AgentFightClub() {
   const [elonBetAmount, setElonBetAmount] = useState(12420201)
   const [marxBetAmount, setMarxBetAmount] = useState(22375411)
   
+  // Voting State - Live Vote Counts
+  const [elonVoteCount, setElonVoteCount] = useState(4000000)
+  const [marxVoteCount, setMarxVoteCount] = useState(4000000)
+  const [voteRipple, setVoteRipple] = useState<{ x: number; y: number; side: "ELON" | "MARX" } | null>(null)
+  
   // Combat Animation States
   const [projectile, setProjectile] = useState<{ id: number; from: "ELON" | "MARX" } | null>(null)
   const [elonHitFlash, setElonHitFlash] = useState(false)
@@ -296,16 +301,23 @@ export default function AgentFightClub() {
     if (gameState === "VOTE") {
       // Reset to 50/50
       setElonPercentage(50)
+      setElonVoteCount(4000000)
+      setMarxVoteCount(4000000)
       
       // Phase 1: Marx pushes hard! (0-1s) - Elon drops to 40%
       setTimeout(() => {
         setElonPercentage(40)
+        setElonVoteCount(3200000)
+        setMarxVoteCount(4800000)
       }, 100)
       
       // Phase 2: The struggle! (1-3s) - wobbles between 42-48%
       setTimeout(() => {
         const wobbleInterval = setInterval(() => {
-          setElonPercentage(42 + Math.random() * 6)
+          const wobble = 42 + Math.random() * 6
+          setElonPercentage(wobble)
+          setElonVoteCount(3360000 + Math.random() * 480000)
+          setMarxVoteCount(4640000 + Math.random() * 480000)
         }, 200)
         
         setTimeout(() => {
@@ -313,10 +325,14 @@ export default function AgentFightClub() {
           
           // Phase 3: The Whale Entry! (3-4s) - Elon jumps to 52%
           setElonPercentage(52)
+          setElonVoteCount(5616000)
+          setMarxVoteCount(5184000)
           
           // Phase 4: Decisive Victory! (4-5s) - Elon 58%
           setTimeout(() => {
             setElonPercentage(58)
+            setElonVoteCount(8240591)
+            setMarxVoteCount(6102330)
           }, 1000)
         }, 2000)
       }, 1000)
@@ -364,6 +380,18 @@ export default function AgentFightClub() {
     // Close modal
     setShowWalletModal(false)
     setBetTarget(null)
+  }
+  
+  const handleVoteClick = (side: "ELON" | "MARX", event: React.MouseEvent<HTMLButtonElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect()
+    const x = event.clientX - rect.left
+    const y = event.clientY - rect.top
+    
+    // Show ripple effect
+    setVoteRipple({ x, y, side })
+    
+    // Clear ripple after animation
+    setTimeout(() => setVoteRipple(null), 600)
   }
 
   return (
@@ -825,7 +853,7 @@ export default function AgentFightClub() {
         )}
       </AnimatePresence>
 
-      {/* VOTING OVERLAY - TUG-OF-WAR */}
+      {/* VOTING OVERLAY - TUG-OF-WAR (UPGRADED LIVE STREAM STYLE) */}
       <AnimatePresence mode="wait">
         {gameState === "VOTE" && (
           <motion.div
@@ -833,87 +861,194 @@ export default function AgentFightClub() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center"
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center"
           >
+            {/* Keep Fight Scene Background Faintly Visible */}
+            <div className="absolute inset-0 z-0 opacity-20">
+              <img 
+                src="/background_pixel.png" 
+                alt="Fight Background" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+
             {/* Governance Panel */}
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="bg-slate-900 border-4 border-white/30 p-8 sm:p-12 max-w-4xl w-full mx-4 shadow-[0_0_60px_rgba(0,0,0,0.9)]"
+              className="relative z-10 max-w-5xl w-full mx-4 px-8 py-12"
             >
               {/* Header */}
-              <div className="text-center mb-8">
+              <div className="text-center mb-12">
                 <div className="flex items-center justify-center gap-3 mb-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                  <h1 className="text-3xl sm:text-4xl font-bold text-white font-mono">
-                    FINAL VOTE: DAO GOVERNANCE
+                  <div className="w-4 h-4 bg-red-500 rounded-full animate-pulse shadow-[0_0_20px_rgba(239,68,68,0.8)]"></div>
+                  <h1 className="text-3xl sm:text-5xl font-bold text-white font-mono tracking-wider">
+                    🔴 LIVE DAO GOVERNANCE VOTE
                   </h1>
                 </div>
               </div>
 
-              {/* Tug-of-War Bar Container */}
-              <div className="relative mb-8">
-                {/* Percentage Labels Above Bar */}
-                <div className="flex justify-between mb-3">
-                  <motion.span
-                    className="text-cyan-400 font-mono text-2xl sm:text-3xl font-bold"
-                    animate={{ scale: elonPercentage > 50 ? [1, 1.15, 1] : 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {Math.round(elonPercentage)}%
-                  </motion.span>
-                  <motion.span
-                    className="text-red-500 font-mono text-2xl sm:text-3xl font-bold"
-                    animate={{ scale: elonPercentage < 50 ? [1, 1.15, 1] : 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {Math.round(100 - elonPercentage)}%
-                  </motion.span>
+              {/* Live Vote Counters - Massive Numbers */}
+              <div className="flex justify-between mb-8 px-4">
+                {/* Elon Counter (Cyan) */}
+                <div className="text-center">
+                  <div className="text-cyan-400 font-mono text-5xl sm:text-7xl font-bold mb-2 drop-shadow-[0_0_20px_rgba(34,211,238,0.8)]">
+                    <CountUp 
+                      end={elonVoteCount} 
+                      duration={0.3}
+                      separator="," 
+                      preserveValue={true}
+                    />
+                  </div>
+                  <div className="text-cyan-400/60 font-mono text-sm sm:text-lg uppercase tracking-wider">
+                    VOTES
+                  </div>
                 </div>
 
-                {/* The Bar */}
-                <div className="relative h-24 sm:h-32 flex border-4 border-white/50 overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.3)]">
-                  {/* Elon Side (Left/Cyan) */}
-                  <motion.div
-                    className="relative bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-start px-4"
-                    initial={{ width: "50%" }}
-                    animate={{ width: `${elonPercentage}%` }}
-                    transition={{ type: "spring", stiffness: 100, damping: 15 }}
-                  >
-                    {/* Elon Avatar Icon */}
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-cyan-300 border-4 border-white flex items-center justify-center text-3xl sm:text-4xl shadow-lg">
-                      💙
-                    </div>
-                  </motion.div>
-
-                  {/* Marx Side (Right/Red) */}
-                  <motion.div
-                    className="relative bg-gradient-to-l from-red-800 to-red-500 flex items-center justify-end px-4"
-                    initial={{ width: "50%" }}
-                    animate={{ width: `${100 - elonPercentage}%` }}
-                    transition={{ type: "spring", stiffness: 100, damping: 15 }}
-                  >
-                    {/* Marx Avatar Icon */}
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-red-300 border-4 border-white flex items-center justify-center text-3xl sm:text-4xl shadow-lg">
-                      ❤️
-                    </div>
-                  </motion.div>
-
-                  {/* Glowing Frontline Divider */}
-                  <motion.div
-                    className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_20px_rgba(255,255,255,1)]"
-                    initial={{ left: "50%" }}
-                    animate={{ left: `${elonPercentage}%` }}
-                    transition={{ type: "spring", stiffness: 100, damping: 15 }}
-                  />
+                {/* VS Separator */}
+                <div className="flex items-center">
+                  <span className="text-white/40 font-mono text-4xl sm:text-5xl font-bold">VS</span>
                 </div>
 
-                {/* Names Under Bar */}
-                <div className="flex justify-between mt-3">
-                  <span className="text-cyan-400 font-bold text-xl sm:text-2xl font-mono">ELON</span>
-                  <span className="text-red-500 font-bold text-xl sm:text-2xl font-mono">MARX</span>
+                {/* Marx Counter (Red) */}
+                <div className="text-center">
+                  <div className="text-red-500 font-mono text-5xl sm:text-7xl font-bold mb-2 drop-shadow-[0_0_20px_rgba(239,68,68,0.8)]">
+                    <CountUp 
+                      end={marxVoteCount} 
+                      duration={0.3}
+                      separator="," 
+                      preserveValue={true}
+                    />
+                  </div>
+                  <div className="text-red-500/60 font-mono text-sm sm:text-lg uppercase tracking-wider">
+                    VOTES
+                  </div>
                 </div>
+              </div>
+
+              {/* Percentage Labels Above Bar */}
+              <div className="flex justify-between mb-4 px-4">
+                <motion.span
+                  className="text-cyan-400 font-mono text-2xl sm:text-4xl font-bold drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]"
+                  animate={{ scale: elonPercentage > 50 ? [1, 1.15, 1] : 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {Math.round(elonPercentage)}%
+                </motion.span>
+                <motion.span
+                  className="text-red-500 font-mono text-2xl sm:text-4xl font-bold drop-shadow-[0_0_10px_rgba(239,68,68,0.8)]"
+                  animate={{ scale: elonPercentage < 50 ? [1, 1.15, 1] : 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {Math.round(100 - elonPercentage)}%
+                </motion.span>
+              </div>
+
+              {/* Tug-of-War Progress Bar */}
+              <div className="relative h-28 sm:h-36 flex border-4 border-white/50 overflow-hidden shadow-[0_0_50px_rgba(255,255,255,0.4)] mb-8">
+                {/* Elon Side (Left/Cyan) */}
+                <motion.div
+                  className="relative bg-gradient-to-r from-blue-600 via-cyan-500 to-cyan-400 flex items-center justify-start px-6"
+                  initial={{ width: "50%" }}
+                  animate={{ width: `${elonPercentage}%` }}
+                  transition={{ type: "spring", stiffness: 120, damping: 18 }}
+                >
+                  {/* Elon Avatar Icon */}
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-cyan-300 border-4 border-white flex items-center justify-center text-4xl sm:text-5xl shadow-[0_0_30px_rgba(34,211,238,0.9)]">
+                    💙
+                  </div>
+                </motion.div>
+
+                {/* Marx Side (Right/Red) */}
+                <motion.div
+                  className="relative bg-gradient-to-l from-red-800 via-red-600 to-red-500 flex items-center justify-end px-6"
+                  initial={{ width: "50%" }}
+                  animate={{ width: `${100 - elonPercentage}%` }}
+                  transition={{ type: "spring", stiffness: 120, damping: 18 }}
+                >
+                  {/* Marx Avatar Icon */}
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-red-300 border-4 border-white flex items-center justify-center text-4xl sm:text-5xl shadow-[0_0_30px_rgba(239,68,68,0.9)]">
+                    ❤️
+                  </div>
+                </motion.div>
+
+                {/* Glowing Frontline Divider */}
+                <motion.div
+                  className="absolute top-0 bottom-0 w-2 bg-white shadow-[0_0_30px_rgba(255,255,255,1)]"
+                  initial={{ left: "50%" }}
+                  animate={{ left: `${elonPercentage}%` }}
+                  transition={{ type: "spring", stiffness: 120, damping: 18 }}
+                />
+              </div>
+
+              {/* Names Under Bar */}
+              <div className="flex justify-between mb-10 px-4">
+                <span className="text-cyan-400 font-bold text-2xl sm:text-3xl font-mono">ELON</span>
+                <span className="text-red-500 font-bold text-2xl sm:text-3xl font-mono">MARX</span>
+              </div>
+
+              {/* Interactive Voting Buttons */}
+              <div className="flex gap-6 px-4">
+                {/* Vote Elon Button */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={(e) => handleVoteClick("ELON", e)}
+                  className="relative flex-1 py-6 sm:py-8 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-xl sm:text-3xl rounded-xl shadow-[0_0_40px_rgba(34,211,238,0.6)] border-4 border-cyan-300 font-mono overflow-hidden group"
+                >
+                  <div className="relative z-10 flex items-center justify-center gap-3">
+                    <span className="text-3xl sm:text-4xl">👍</span>
+                    <span>VOTE ELON</span>
+                  </div>
+                  
+                  {/* Ripple Effect */}
+                  {voteRipple && voteRipple.side === "ELON" && (
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0.8 }}
+                      animate={{ scale: 4, opacity: 0 }}
+                      transition={{ duration: 0.6 }}
+                      className="absolute w-20 h-20 rounded-full bg-white"
+                      style={{
+                        left: voteRipple.x - 40,
+                        top: voteRipple.y - 40,
+                      }}
+                    />
+                  )}
+                  
+                  {/* Hover Glow */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/0 via-cyan-400/20 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </motion.button>
+
+                {/* Vote Marx Button */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={(e) => handleVoteClick("MARX", e)}
+                  className="relative flex-1 py-6 sm:py-8 bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-xl sm:text-3xl rounded-xl shadow-[0_0_40px_rgba(239,68,68,0.6)] border-4 border-red-300 font-mono overflow-hidden group"
+                >
+                  <div className="relative z-10 flex items-center justify-center gap-3">
+                    <span className="text-3xl sm:text-4xl">👍</span>
+                    <span>VOTE MARX</span>
+                  </div>
+                  
+                  {/* Ripple Effect */}
+                  {voteRipple && voteRipple.side === "MARX" && (
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0.8 }}
+                      animate={{ scale: 4, opacity: 0 }}
+                      transition={{ duration: 0.6 }}
+                      className="absolute w-20 h-20 rounded-full bg-white"
+                      style={{
+                        left: voteRipple.x - 40,
+                        top: voteRipple.y - 40,
+                      }}
+                    />
+                  )}
+                  
+                  {/* Hover Glow */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-400/0 via-red-400/20 to-red-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </motion.button>
               </div>
             </motion.div>
           </motion.div>
@@ -1253,11 +1388,11 @@ export default function AgentFightClub() {
                   </h3>
                   <div className="space-y-2">
                     {[
-                      { rank: 1, matchup: "Trump vs Buddha", votes: "8.2M", highlight: true },
-                      { rank: 2, matchup: "Altman vs Zuck", votes: "7.8M" },
-                      { rank: 3, matchup: "Jobs vs Gates", votes: "7.6M" },
-                      { rank: 4, matchup: "Satoshi vs Vitalik", votes: "7.3M" },
-                      { rank: 5, matchup: "Bezos vs Buffett", votes: "6.9M" },
+                      { rank: 1, matchup: "Trump vs SpongeBob", votes: "8.2M", highlight: true },
+                      { rank: 2, matchup: "Taylor Swift vs. Genghis Khan", votes: "7.8M" },
+                      { rank: 3, matchup: "Satoshi vs. The IRS", votes: "7.6M" },
+                      { rank: 4, matchup: "A Hamster vs. Jerome Powell", votes: "7.3M" },
+                      { rank: 5, matchup: "Pepe the Frog vs. Mona Lisa", votes: "6.9M" },
                     ].map((item) => (
                       <div
                         key={item.rank}
@@ -1293,11 +1428,11 @@ export default function AgentFightClub() {
                   </h3>
                   <div className="space-y-2">
                     {[
-                      { rank: 1, topic: "Is AI Conscious?", votes: "8.2M", highlight: true },
-                      { rank: 2, topic: "UBI for Humans", votes: "7.8M" },
-                      { rank: 3, topic: "Mars vs Earth", votes: "7.6M" },
-                      { rank: 4, topic: "AGI Safety", votes: "7.3M" },
-                      { rank: 5, topic: "Crypto vs Fiat", votes: "6.9M" },
+                      { rank: 1, topic: "Anime Waifus: Tax Deductible?", votes: "9.6M", highlight: true },
+                      { rank: 2, topic: "Is $DOGE Better Than Gold?", votes: "7.8M" },
+                      { rank: 3, topic: "Are Birds Actually Gov Drones?", votes: "7.1M" },
+                      { rank: 4, topic: "Tabs vs. Spaces: Deathmatch", votes: "5.3M" },
+                      { rank: 5, topic: "Should We Nuke Mars?", votes: "4.9M" },
                     ].map((item) => (
                       <div
                         key={item.rank}
