@@ -117,11 +117,12 @@ const SCRIPT = [
 function AgentFightClub() {
     _s();
     const [gameState, setGameState] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("LOBBY");
-    const [elonLiquidity, setElonLiquidity] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(12420201);
-    const [marxLiquidity, setMarxLiquidity] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(22375411);
+    const [elonLiquidity, setElonLiquidity] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1000000);
+    const [marxLiquidity, setMarxLiquidity] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1000000);
     const [fightStep, setFightStep] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const [currentDialogue, setCurrentDialogue] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [hoveredChar, setHoveredChar] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [hoveredLiquidity, setHoveredLiquidity] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     // COMMENTED OUT: Old auto-play fight logic
     // useEffect(() => {
     //   if (gameState === "FIGHT") {
@@ -146,7 +147,7 @@ function AgentFightClub() {
                                 text: "Haha, broke commie! You lived off handouts while I build empires. Web3's pure freedom—WAGMI!"
                             });
                             setMarxLiquidity({
-                                "AgentFightClub.useEffect.handleKeyDown": (prev)=>Math.max(0, prev - Math.floor(Math.random() * 3000000 + 2000000))
+                                "AgentFightClub.useEffect.handleKeyDown": (prev)=>Math.max(0, prev - Math.floor(Math.random() * 100000 + 100000))
                             }["AgentFightClub.useEffect.handleKeyDown"]);
                         } else if (nextStep === 2) {
                             // Marx Round 1 Reply
@@ -155,7 +156,7 @@ function AgentFightClub() {
                                 text: "Vampire capitalist! Sucking blood from proletariat with your scam coins."
                             });
                             setElonLiquidity({
-                                "AgentFightClub.useEffect.handleKeyDown": (prev)=>Math.max(0, prev - Math.floor(Math.random() * 3000000 + 2000000))
+                                "AgentFightClub.useEffect.handleKeyDown": (prev)=>Math.max(0, prev - Math.floor(Math.random() * 100000 + 100000))
                             }["AgentFightClub.useEffect.handleKeyDown"]);
                         } else if (nextStep === 3) {
                             // Musk Round 2
@@ -164,7 +165,7 @@ function AgentFightClub() {
                                 text: "I create value! DOGE flips fiat. Free market wins!"
                             });
                             setMarxLiquidity({
-                                "AgentFightClub.useEffect.handleKeyDown": (prev)=>Math.max(0, prev - Math.floor(Math.random() * 3000000 + 2000000))
+                                "AgentFightClub.useEffect.handleKeyDown": (prev)=>Math.max(0, prev - Math.floor(Math.random() * 100000 + 100000))
                             }["AgentFightClub.useEffect.handleKeyDown"]);
                         } else if (nextStep === 4) {
                             // Marx Round 2 Reply
@@ -173,7 +174,7 @@ function AgentFightClub() {
                                 text: "Staking is theft! Rug pulls are bourgeois betrayal!"
                             });
                             setElonLiquidity({
-                                "AgentFightClub.useEffect.handleKeyDown": (prev)=>Math.max(0, prev - Math.floor(Math.random() * 3000000 + 2000000))
+                                "AgentFightClub.useEffect.handleKeyDown": (prev)=>Math.max(0, prev - Math.floor(Math.random() * 100000 + 100000))
                             }["AgentFightClub.useEffect.handleKeyDown"]);
                         } else if (nextStep === 5) {
                             // Musk Round 3
@@ -182,7 +183,7 @@ function AgentFightClub() {
                                 text: "Buyout time! Minting your ideology as a memecoin. Market cap: Zero!"
                             });
                             setMarxLiquidity({
-                                "AgentFightClub.useEffect.handleKeyDown": (prev)=>Math.max(0, prev - Math.floor(Math.random() * 3000000 + 2000000))
+                                "AgentFightClub.useEffect.handleKeyDown": (prev)=>Math.max(0, prev - Math.floor(Math.random() * 100000 + 100000))
                             }["AgentFightClub.useEffect.handleKeyDown"]);
                         } else if (nextStep === 6) {
                             // Marx Round 3 Reply
@@ -191,7 +192,7 @@ function AgentFightClub() {
                                 text: "Hard Fork revolution! 51% attack incoming!"
                             });
                             setElonLiquidity({
-                                "AgentFightClub.useEffect.handleKeyDown": (prev)=>Math.max(0, prev - Math.floor(Math.random() * 3000000 + 2000000))
+                                "AgentFightClub.useEffect.handleKeyDown": (prev)=>Math.max(0, prev - Math.floor(Math.random() * 100000 + 100000))
                             }["AgentFightClub.useEffect.handleKeyDown"]);
                         }
                     }
@@ -228,21 +229,21 @@ function AgentFightClub() {
                 position: "bottom-right"
             }, void 0, false, {
                 fileName: "[project]/components/agent-fight-club.tsx",
-                lineNumber: 158,
+                lineNumber: 159,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "pointer-events-none fixed inset-0 z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%] pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/components/agent-fight-club.tsx",
-                lineNumber: 161,
+                lineNumber: 162,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "pointer-events-none fixed inset-0 z-50 animate-scanline bg-gradient-to-b from-transparent via-white/5 to-transparent h-20 opacity-20"
             }, void 0, false, {
                 fileName: "[project]/components/agent-fight-club.tsx",
-                lineNumber: 162,
+                lineNumber: 163,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -268,20 +269,20 @@ function AgentFightClub() {
                                     className: "w-full h-full object-cover"
                                 }, void 0, false, {
                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                    lineNumber: 176,
+                                    lineNumber: 177,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "absolute inset-0 bg-black/50"
                                 }, void 0, false, {
                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                    lineNumber: 181,
+                                    lineNumber: 182,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/agent-fight-club.tsx",
-                            lineNumber: 175,
+                            lineNumber: 176,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -298,7 +299,7 @@ function AgentFightClub() {
                                             children: "AGENT FIGHT CLUB"
                                         }, void 0, false, {
                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                            lineNumber: 188,
+                                            lineNumber: 189,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -309,26 +310,26 @@ function AgentFightClub() {
                                                     children: "🍄"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                    lineNumber: 192,
+                                                    lineNumber: 193,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-green-500 border-2 border-black animate-pulse"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                    lineNumber: 195,
+                                                    lineNumber: 196,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                            lineNumber: 191,
+                                            lineNumber: 192,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                    lineNumber: 187,
+                                    lineNumber: 188,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -343,41 +344,43 @@ function AgentFightClub() {
                                                     children: "IS WEB3 A SCAM?"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                    lineNumber: 203,
+                                                    lineNumber: 204,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-gray-400 font-mono text-sm sm:text-base",
-                                                    children: "$34,795,612 Vol"
+                                                    className: "text-white font-mono text-base sm:text-lg md:text-xl font-bold",
+                                                    children: "$34,795,612 Vol💰"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                    lineNumber: 209,
-                                                    columnNumber: 19
+                                                    lineNumber: 210,
+                                                    columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                            lineNumber: 202,
+                                            lineNumber: 203,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "w-full max-w-6xl flex items-center justify-center gap-8 sm:gap-16 md:gap-24 relative",
+                                            className: "w-full flex items-center justify-between px-8 sm:px-12 md:px-16 relative",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "flex flex-col items-center relative",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "mb-4 w-48 sm:w-64",
+                                                            className: "mb-4 w-48 sm:w-64 cursor-pointer",
+                                                            onMouseEnter: ()=>setHoveredLiquidity("ELON"),
+                                                            onMouseLeave: ()=>setHoveredLiquidity(null),
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "flex justify-between text-[10px] mb-1",
+                                                                    className: `flex justify-between mb-1 transition-all duration-300 ${hoveredLiquidity === "ELON" ? "text-base font-bold drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" : "text-sm font-bold"}`,
                                                                     children: [
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                             className: "text-cyan-400 font-mono",
                                                                             children: "LIQUIDITY"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                                            lineNumber: 221,
+                                                                            lineNumber: 230,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -385,24 +388,24 @@ function AgentFightClub() {
                                                                             children: formatMoney(elonLiquidity)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                                            lineNumber: 222,
+                                                                            lineNumber: 231,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                                    lineNumber: 220,
+                                                                    lineNumber: 225,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "h-4 bg-slate-900 border-2 border-cyan-500 relative overflow-hidden",
+                                                                    className: `bg-slate-900 border-cyan-500 relative overflow-hidden transition-all duration-300 ${hoveredLiquidity === "ELON" ? "h-5 border-4 scale-110 shadow-[0_0_20px_rgba(34,211,238,0.6)]" : "h-4 border-2"}`,
                                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                                                         className: "h-full bg-gradient-to-r from-blue-600 to-cyan-400",
                                                                         initial: {
                                                                             width: "100%"
                                                                         },
                                                                         animate: {
-                                                                            width: `${elonLiquidity / 12420201 * 100}%`
+                                                                            width: `${elonLiquidity / 1000000 * 100}%`
                                                                         },
                                                                         transition: {
                                                                             type: "spring",
@@ -410,32 +413,32 @@ function AgentFightClub() {
                                                                         }
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/agent-fight-club.tsx",
-                                                                        lineNumber: 225,
+                                                                        lineNumber: 238,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                                    lineNumber: 224,
+                                                                    lineNumber: 233,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 219,
+                                                            lineNumber: 220,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "relative",
+                                                            className: "relative transition-all duration-300 cursor-pointer",
                                                             onMouseEnter: ()=>setHoveredChar("ELON"),
                                                             onMouseLeave: ()=>setHoveredChar(null),
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                                    src: "/musk_pixel.png",
+                                                                    src: "/elon_pixel.png",
                                                                     alt: "Elon Musk",
-                                                                    className: "w-48 sm:w-64 md:w-80 h-auto border-4 border-cyan-500/50 hover:border-cyan-400 transition-all"
+                                                                    className: `w-48 sm:w-64 md:w-80 h-auto transition-all duration-300 ${hoveredChar === "ELON" ? "scale-110 drop-shadow-[0_0_30px_rgba(34,211,238,0.8)]" : ""}`
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                                    lineNumber: 240,
+                                                                    lineNumber: 253,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 hoveredChar === "ELON" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -447,48 +450,63 @@ function AgentFightClub() {
                                                                         opacity: 1,
                                                                         x: 0
                                                                     },
-                                                                    className: "absolute left-full top-1/4 ml-4 bg-slate-900/95 border-2 border-cyan-400 p-3 text-xs font-mono whitespace-nowrap shadow-lg",
+                                                                    className: "absolute left-full top-1/4 ml-6 bg-slate-900/95 border-4 border-cyan-400 p-5 text-base font-mono whitespace-nowrap shadow-[0_0_30px_rgba(34,211,238,0.6)]",
                                                                     children: [
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "text-cyan-400 font-bold mb-1",
+                                                                            className: "text-cyan-400 font-bold mb-2 text-lg",
                                                                             children: "ELON MUSK"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                                            lineNumber: 253,
+                                                                            lineNumber: 270,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "text-white",
+                                                                            className: "text-white mb-1",
                                                                             children: "Grok-3 (Beta)"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                                            lineNumber: 254,
+                                                                            lineNumber: 271,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "text-gray-400 text-[10px]",
+                                                                            className: "text-gray-400 text-sm",
                                                                             children: "Wallet: 0x...D0GE"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                                            lineNumber: 255,
+                                                                            lineNumber: 272,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                                    lineNumber: 248,
+                                                                    lineNumber: 265,
                                                                     columnNumber: 25
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "absolute -bottom-8 left-1/2 transform -translate-x-1/2",
+                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "text-cyan-400 font-bold text-3xl font-press-start drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]",
+                                                                        children: "NO"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/agent-fight-club.tsx",
+                                                                        lineNumber: 278,
+                                                                        columnNumber: 25
+                                                                    }, this)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/agent-fight-club.tsx",
+                                                                    lineNumber: 277,
+                                                                    columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 235,
+                                                            lineNumber: 248,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                    lineNumber: 217,
+                                                    lineNumber: 218,
                                                     columnNumber: 19
                                                 }, this),
                                                 currentDialogue && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -507,7 +525,7 @@ function AgentFightClub() {
                                                             children: currentDialogue.speaker
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 268,
+                                                            lineNumber: 292,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -515,38 +533,32 @@ function AgentFightClub() {
                                                             children: currentDialogue.text
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 271,
-                                                            columnNumber: 23
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "text-gray-500 text-[10px] mt-2",
-                                                            children: "[Press SPACE to continue]"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 274,
+                                                            lineNumber: 295,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                    lineNumber: 263,
+                                                    lineNumber: 287,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "flex flex-col items-center relative",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "mb-4 w-48 sm:w-64",
+                                                            className: "mb-4 w-48 sm:w-64 cursor-pointer",
+                                                            onMouseEnter: ()=>setHoveredLiquidity("MARX"),
+                                                            onMouseLeave: ()=>setHoveredLiquidity(null),
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "flex justify-between text-[10px] mb-1",
+                                                                    className: `flex justify-between mb-1 transition-all duration-300 ${hoveredLiquidity === "MARX" ? "text-base font-bold drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]" : "text-sm font-bold"}`,
                                                                     children: [
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                             className: "text-red-500 font-mono",
                                                                             children: "LIQUIDITY"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                                            lineNumber: 285,
+                                                                            lineNumber: 314,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -554,24 +566,24 @@ function AgentFightClub() {
                                                                             children: formatMoney(marxLiquidity)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                                            lineNumber: 286,
+                                                                            lineNumber: 315,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                                    lineNumber: 284,
+                                                                    lineNumber: 309,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "h-4 bg-slate-900 border-2 border-red-500 relative overflow-hidden",
+                                                                    className: `bg-slate-900 border-red-500 relative overflow-hidden transition-all duration-300 ${hoveredLiquidity === "MARX" ? "h-5 border-4 scale-110 shadow-[0_0_20px_rgba(239,68,68,0.6)]" : "h-4 border-2"}`,
                                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                                                         className: "h-full bg-gradient-to-r from-red-800 to-red-500",
                                                                         initial: {
                                                                             width: "100%"
                                                                         },
                                                                         animate: {
-                                                                            width: `${marxLiquidity / 22375411 * 100}%`
+                                                                            width: `${marxLiquidity / 1000000 * 100}%`
                                                                         },
                                                                         transition: {
                                                                             type: "spring",
@@ -579,32 +591,32 @@ function AgentFightClub() {
                                                                         }
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/agent-fight-club.tsx",
-                                                                        lineNumber: 289,
+                                                                        lineNumber: 322,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                                    lineNumber: 288,
+                                                                    lineNumber: 317,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 283,
+                                                            lineNumber: 304,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "relative",
+                                                            className: "relative transition-all duration-300 cursor-pointer",
                                                             onMouseEnter: ()=>setHoveredChar("MARX"),
                                                             onMouseLeave: ()=>setHoveredChar(null),
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                                     src: "/marx_pixel.png",
                                                                     alt: "Karl Marx",
-                                                                    className: "w-48 sm:w-64 md:w-80 h-auto border-4 border-red-500/50 hover:border-red-400 transition-all"
+                                                                    className: `w-42 sm:w-56 md:w-70 h-auto transition-all duration-300 ${hoveredChar === "MARX" ? "scale-110 drop-shadow-[0_0_30px_rgba(239,68,68,0.8)]" : ""}`
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                                    lineNumber: 304,
+                                                                    lineNumber: 337,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 hoveredChar === "MARX" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -616,173 +628,183 @@ function AgentFightClub() {
                                                                         opacity: 1,
                                                                         x: 0
                                                                     },
-                                                                    className: "absolute right-full top-1/4 mr-4 bg-slate-900/95 border-2 border-red-500 p-3 text-xs font-mono whitespace-nowrap shadow-lg",
+                                                                    className: "absolute right-full top-1/4 mr-6 bg-slate-900/95 border-4 border-red-500 p-5 text-base font-mono whitespace-nowrap shadow-[0_0_30px_rgba(239,68,68,0.6)]",
                                                                     children: [
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "text-red-500 font-bold mb-1",
+                                                                            className: "text-red-500 font-bold mb-2 text-lg",
                                                                             children: "KARL MARX"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                                            lineNumber: 317,
+                                                                            lineNumber: 354,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "text-white",
+                                                                            className: "text-white mb-1",
                                                                             children: "Llama-3-70B"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                                            lineNumber: 318,
+                                                                            lineNumber: 355,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "text-gray-400 text-[10px]",
+                                                                            className: "text-gray-400 text-sm",
                                                                             children: "Wallet: 0x...RED1"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                                            lineNumber: 319,
+                                                                            lineNumber: 356,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                                    lineNumber: 312,
+                                                                    lineNumber: 349,
+                                                                    columnNumber: 25
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "absolute -bottom-8 left-1/2 transform -translate-x-1/2",
+                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "text-red-500 font-bold text-3xl font-press-start drop-shadow-[0_0_10px_rgba(239,68,68,0.8)]",
+                                                                        children: "YES"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/agent-fight-club.tsx",
+                                                                        lineNumber: 362,
+                                                                        columnNumber: 25
+                                                                    }, this)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/agent-fight-club.tsx",
+                                                                    lineNumber: 361,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/components/agent-fight-club.tsx",
+                                                            lineNumber: 332,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/components/agent-fight-club.tsx",
+                                                    lineNumber: 302,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/components/agent-fight-club.tsx",
+                                            lineNumber: 216,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "w-full",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "relative h-20 flex items-center",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "absolute inset-0 flex",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "bg-cyan-600 border-y-4 border-l-4 border-cyan-400 flex items-center justify-between px-6",
+                                                            style: {
+                                                                width: `${12420201 / (12420201 + 22375411) * 100}%`
+                                                            },
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
+                                                                    whileHover: {
+                                                                        scale: 1.05
+                                                                    },
+                                                                    whileTap: {
+                                                                        scale: 0.95
+                                                                    },
+                                                                    className: "px-6 py-3 bg-cyan-700 hover:bg-cyan-600 text-white font-bold border-2 border-cyan-300 text-xs sm:text-sm shadow-lg",
+                                                                    children: "BET ON MUSK"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/agent-fight-club.tsx",
+                                                                    lineNumber: 380,
+                                                                    columnNumber: 25
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "text-white font-mono text-lg font-bold",
+                                                                    children: formatMoney(12420201)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/agent-fight-club.tsx",
+                                                                    lineNumber: 387,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 299,
-                                                            columnNumber: 21
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/components/agent-fight-club.tsx",
-                                                    lineNumber: 281,
-                                                    columnNumber: 19
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/components/agent-fight-club.tsx",
-                                            lineNumber: 215,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "w-full max-w-4xl flex items-center justify-between gap-4 px-4",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex items-center gap-3",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
-                                                            whileHover: {
-                                                                scale: 1.05
-                                                            },
-                                                            whileTap: {
-                                                                scale: 0.95
-                                                            },
-                                                            className: "px-6 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold border-2 border-cyan-400 text-xs sm:text-sm",
-                                                            children: "[ BET ON MUSK ]"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 330,
-                                                            columnNumber: 21
+                                                            lineNumber: 376,
+                                                            columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "text-cyan-400 font-mono text-sm sm:text-base",
-                                                            children: formatMoney(elonLiquidity)
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 337,
-                                                            columnNumber: 21
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/components/agent-fight-club.tsx",
-                                                    lineNumber: 329,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex items-center gap-2",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-cyan-400 font-bold text-lg",
-                                                            children: "NO"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 344,
-                                                            columnNumber: 21
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-red-500 font-bold text-lg",
-                                                            children: "YES"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 345,
-                                                            columnNumber: 21
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/components/agent-fight-club.tsx",
-                                                    lineNumber: 343,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex items-center gap-3",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "text-red-500 font-mono text-sm sm:text-base",
-                                                            children: formatMoney(marxLiquidity)
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 350,
-                                                            columnNumber: 21
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
-                                                            whileHover: {
-                                                                scale: 1.05
+                                                            className: "bg-red-600 border-y-4 border-r-4 border-red-400 flex items-center justify-between px-6",
+                                                            style: {
+                                                                width: `${22375411 / (12420201 + 22375411) * 100}%`
                                                             },
-                                                            whileTap: {
-                                                                scale: 0.95
-                                                            },
-                                                            className: "px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-bold border-2 border-red-400 text-xs sm:text-sm",
-                                                            children: "[ BET ON MARX ]"
-                                                        }, void 0, false, {
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "text-white font-mono text-lg font-bold",
+                                                                    children: formatMoney(22375411)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/agent-fight-club.tsx",
+                                                                    lineNumber: 397,
+                                                                    columnNumber: 25
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
+                                                                    whileHover: {
+                                                                        scale: 1.05
+                                                                    },
+                                                                    whileTap: {
+                                                                        scale: 0.95
+                                                                    },
+                                                                    className: "px-6 py-3 bg-red-700 hover:bg-red-600 text-white font-bold border-2 border-red-300 text-xs sm:text-sm shadow-lg",
+                                                                    children: "BET ON MARX"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/agent-fight-club.tsx",
+                                                                    lineNumber: 400,
+                                                                    columnNumber: 25
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 353,
-                                                            columnNumber: 21
+                                                            lineNumber: 393,
+                                                            columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                    lineNumber: 349,
-                                                    columnNumber: 19
+                                                    lineNumber: 374,
+                                                    columnNumber: 21
                                                 }, this)
-                                            ]
-                                        }, void 0, true, {
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/agent-fight-club.tsx",
+                                                lineNumber: 372,
+                                                columnNumber: 19
+                                            }, this)
+                                        }, void 0, false, {
                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                            lineNumber: 327,
+                                            lineNumber: 371,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                    lineNumber: 200,
+                                    lineNumber: 201,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/agent-fight-club.tsx",
-                            lineNumber: 185,
+                            lineNumber: 186,
                             columnNumber: 13
                         }, this)
                     ]
                 }, "fight", true, {
                     fileName: "[project]/components/agent-fight-club.tsx",
-                    lineNumber: 167,
+                    lineNumber: 168,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/agent-fight-club.tsx",
-                lineNumber: 165,
+                lineNumber: 166,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -810,7 +832,7 @@ function AgentFightClub() {
                                     children: "AGENT FIGHT CLUB"
                                 }, void 0, false, {
                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                    lineNumber: 393,
+                                    lineNumber: 442,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -821,26 +843,26 @@ function AgentFightClub() {
                                             children: "🍄"
                                         }, void 0, false, {
                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                            lineNumber: 397,
+                                            lineNumber: 446,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-green-500 border-2 border-black animate-pulse"
                                         }, void 0, false, {
                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                            lineNumber: 400,
+                                            lineNumber: 449,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                    lineNumber: 396,
+                                    lineNumber: 445,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/agent-fight-club.tsx",
-                            lineNumber: 392,
+                            lineNumber: 441,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -864,7 +886,7 @@ function AgentFightClub() {
                                             className: "absolute -inset-4 bg-blue-500/20 blur-3xl"
                                         }, void 0, false, {
                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                            lineNumber: 413,
+                                            lineNumber: 462,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -876,7 +898,7 @@ function AgentFightClub() {
                                                     className: "w-full h-auto shadow-2xl shadow-blue-500/20 border border-white/10"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                    lineNumber: 415,
+                                                    lineNumber: 464,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -890,7 +912,7 @@ function AgentFightClub() {
                                                             children: "MUSK"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 423,
+                                                            lineNumber: 472,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -901,25 +923,25 @@ function AgentFightClub() {
                                                             children: "MARX"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                                            lineNumber: 426,
+                                                            lineNumber: 475,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                                    lineNumber: 422,
+                                                    lineNumber: 471,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                            lineNumber: 414,
+                                            lineNumber: 463,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                    lineNumber: 407,
+                                    lineNumber: 456,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -931,7 +953,7 @@ function AgentFightClub() {
                                             children: "IS WEB3 A SCAM?"
                                         }, void 0, false, {
                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                            lineNumber: 435,
+                                            lineNumber: 484,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -939,13 +961,13 @@ function AgentFightClub() {
                                             children: "WEEKLY AGENT FIGHT #36"
                                         }, void 0, false, {
                                             fileName: "[project]/components/agent-fight-club.tsx",
-                                            lineNumber: 442,
+                                            lineNumber: 491,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                    lineNumber: 434,
+                                    lineNumber: 483,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -960,13 +982,13 @@ function AgentFightClub() {
                                     children: "🔴 LIVE"
                                 }, void 0, false, {
                                     fileName: "[project]/components/agent-fight-club.tsx",
-                                    lineNumber: 448,
+                                    lineNumber: 497,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/agent-fight-club.tsx",
-                            lineNumber: 405,
+                            lineNumber: 454,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -993,7 +1015,7 @@ function AgentFightClub() {
                                                 children: "MATCH-UP NEXT WEEK"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/agent-fight-club.tsx",
-                                                lineNumber: 468,
+                                                lineNumber: 517,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1037,7 +1059,7 @@ function AgentFightClub() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/agent-fight-club.tsx",
-                                                                lineNumber: 487,
+                                                                lineNumber: 536,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1048,7 +1070,7 @@ function AgentFightClub() {
                                                                         children: "▲"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/agent-fight-club.tsx",
-                                                                        lineNumber: 491,
+                                                                        lineNumber: 540,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1056,30 +1078,30 @@ function AgentFightClub() {
                                                                         children: item.votes
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/agent-fight-club.tsx",
-                                                                        lineNumber: 492,
+                                                                        lineNumber: 541,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/agent-fight-club.tsx",
-                                                                lineNumber: 490,
+                                                                lineNumber: 539,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, item.rank, true, {
                                                         fileName: "[project]/components/agent-fight-club.tsx",
-                                                        lineNumber: 479,
+                                                        lineNumber: 528,
                                                         columnNumber: 23
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/components/agent-fight-club.tsx",
-                                                lineNumber: 471,
+                                                lineNumber: 520,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/agent-fight-club.tsx",
-                                        lineNumber: 462,
+                                        lineNumber: 511,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1101,7 +1123,7 @@ function AgentFightClub() {
                                                 children: "TOPIC NEXT WEEK"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/agent-fight-club.tsx",
-                                                lineNumber: 508,
+                                                lineNumber: 557,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1145,7 +1167,7 @@ function AgentFightClub() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/agent-fight-club.tsx",
-                                                                lineNumber: 527,
+                                                                lineNumber: 576,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1156,7 +1178,7 @@ function AgentFightClub() {
                                                                         children: "▲"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/agent-fight-club.tsx",
-                                                                        lineNumber: 531,
+                                                                        lineNumber: 580,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1164,62 +1186,62 @@ function AgentFightClub() {
                                                                         children: item.votes
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/agent-fight-club.tsx",
-                                                                        lineNumber: 532,
+                                                                        lineNumber: 581,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/agent-fight-club.tsx",
-                                                                lineNumber: 530,
+                                                                lineNumber: 579,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, item.rank, true, {
                                                         fileName: "[project]/components/agent-fight-club.tsx",
-                                                        lineNumber: 519,
+                                                        lineNumber: 568,
                                                         columnNumber: 23
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/components/agent-fight-club.tsx",
-                                                lineNumber: 511,
+                                                lineNumber: 560,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/agent-fight-club.tsx",
-                                        lineNumber: 502,
+                                        lineNumber: 551,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/agent-fight-club.tsx",
-                                lineNumber: 460,
+                                lineNumber: 509,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/agent-fight-club.tsx",
-                            lineNumber: 459,
+                            lineNumber: 508,
                             columnNumber: 13
                         }, this)
                     ]
                 }, "lobby", true, {
                     fileName: "[project]/components/agent-fight-club.tsx",
-                    lineNumber: 384,
+                    lineNumber: 433,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/agent-fight-club.tsx",
-                lineNumber: 382,
+                lineNumber: 431,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/agent-fight-club.tsx",
-        lineNumber: 157,
+        lineNumber: 158,
         columnNumber: 5
     }, this);
 }
-_s(AgentFightClub, "szjlscHCe21NipXUpiDBlayK3kU=");
+_s(AgentFightClub, "t2bQfKQVAlYKjHIhMp5kxo1OBJ0=");
 _c = AgentFightClub;
 var _c;
 __turbopack_context__.k.register(_c, "AgentFightClub");

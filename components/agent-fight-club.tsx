@@ -62,11 +62,12 @@ const SCRIPT = [
 
 export default function AgentFightClub() {
   const [gameState, setGameState] = useState<GameState>("LOBBY")
-  const [elonLiquidity, setElonLiquidity] = useState(12420201)
-  const [marxLiquidity, setMarxLiquidity] = useState(22375411)
+  const [elonLiquidity, setElonLiquidity] = useState(1000000)
+  const [marxLiquidity, setMarxLiquidity] = useState(1000000)
   const [fightStep, setFightStep] = useState(0)
   const [currentDialogue, setCurrentDialogue] = useState<{ speaker: string; text: string } | null>(null)
   const [hoveredChar, setHoveredChar] = useState<"ELON" | "MARX" | null>(null)
+  const [hoveredLiquidity, setHoveredLiquidity] = useState<"ELON" | "MARX" | null>(null)
 
   // COMMENTED OUT: Old auto-play fight logic
   // useEffect(() => {
@@ -92,42 +93,42 @@ export default function AgentFightClub() {
             speaker: "ELON",
             text: "Haha, broke commie! You lived off handouts while I build empires. Web3's pure freedom—WAGMI!"
           })
-          setMarxLiquidity(prev => Math.max(0, prev - Math.floor(Math.random() * 3000000 + 2000000)))
+          setMarxLiquidity(prev => Math.max(0, prev - Math.floor(Math.random() * 100000 + 100000)))
         } else if (nextStep === 2) {
           // Marx Round 1 Reply
           setCurrentDialogue({
             speaker: "MARX",
             text: "Vampire capitalist! Sucking blood from proletariat with your scam coins."
           })
-          setElonLiquidity(prev => Math.max(0, prev - Math.floor(Math.random() * 3000000 + 2000000)))
+          setElonLiquidity(prev => Math.max(0, prev - Math.floor(Math.random() * 100000 + 100000)))
         } else if (nextStep === 3) {
           // Musk Round 2
           setCurrentDialogue({
             speaker: "ELON",
             text: "I create value! DOGE flips fiat. Free market wins!"
           })
-          setMarxLiquidity(prev => Math.max(0, prev - Math.floor(Math.random() * 3000000 + 2000000)))
+          setMarxLiquidity(prev => Math.max(0, prev - Math.floor(Math.random() * 100000 + 100000)))
         } else if (nextStep === 4) {
           // Marx Round 2 Reply
           setCurrentDialogue({
             speaker: "MARX",
             text: "Staking is theft! Rug pulls are bourgeois betrayal!"
           })
-          setElonLiquidity(prev => Math.max(0, prev - Math.floor(Math.random() * 3000000 + 2000000)))
+          setElonLiquidity(prev => Math.max(0, prev - Math.floor(Math.random() * 100000 + 100000)))
         } else if (nextStep === 5) {
           // Musk Round 3
           setCurrentDialogue({
             speaker: "ELON",
             text: "Buyout time! Minting your ideology as a memecoin. Market cap: Zero!"
           })
-          setMarxLiquidity(prev => Math.max(0, prev - Math.floor(Math.random() * 3000000 + 2000000)))
+          setMarxLiquidity(prev => Math.max(0, prev - Math.floor(Math.random() * 100000 + 100000)))
         } else if (nextStep === 6) {
           // Marx Round 3 Reply
           setCurrentDialogue({
             speaker: "MARX",
             text: "Hard Fork revolution! 51% attack incoming!"
           })
-          setElonLiquidity(prev => Math.max(0, prev - Math.floor(Math.random() * 3000000 + 2000000)))
+          setElonLiquidity(prev => Math.max(0, prev - Math.floor(Math.random() * 100000 + 100000)))
         }
       }
       
@@ -206,26 +207,38 @@ export default function AgentFightClub() {
                   >
                     IS WEB3 A SCAM?
                   </h2>
-                  <p className="text-gray-400 font-mono text-sm sm:text-base">
-                    $34,795,612 Vol
-                  </p>
+                    <p className="text-white font-mono text-base sm:text-lg md:text-xl font-bold">
+                    $34,795,612 Vol💰
+                    </p>
                 </div>
 
                 {/* Arena - Characters with Liquidity Bars */}
-                <div className="w-full max-w-6xl flex items-center justify-center gap-8 sm:gap-16 md:gap-24 relative">
+                <div className="w-full flex items-center justify-between px-8 sm:px-12 md:px-16 relative">
                   {/* Elon Character */}
                   <div className="flex flex-col items-center relative">
                     {/* Liquidity Bar */}
-                    <div className="mb-4 w-48 sm:w-64">
-                      <div className="flex justify-between text-[10px] mb-1">
+                    <div 
+                      className="mb-4 w-48 sm:w-64 cursor-pointer"
+                      onMouseEnter={() => setHoveredLiquidity("ELON")}
+                      onMouseLeave={() => setHoveredLiquidity(null)}
+                    >
+                      <div className={`flex justify-between mb-1 transition-all duration-300 ${
+                        hoveredLiquidity === "ELON" 
+                          ? "text-base font-bold drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" 
+                          : "text-sm font-bold"
+                      }`}>
                         <span className="text-cyan-400 font-mono">LIQUIDITY</span>
                         <span className="text-cyan-400 font-mono">{formatMoney(elonLiquidity)}</span>
                       </div>
-                      <div className="h-4 bg-slate-900 border-2 border-cyan-500 relative overflow-hidden">
+                      <div className={`bg-slate-900 border-cyan-500 relative overflow-hidden transition-all duration-300 ${
+                        hoveredLiquidity === "ELON"
+                          ? "h-5 border-4 scale-110 shadow-[0_0_20px_rgba(34,211,238,0.6)]"
+                          : "h-4 border-2"
+                      }`}>
                         <motion.div 
                           className="h-full bg-gradient-to-r from-blue-600 to-cyan-400"
                           initial={{ width: "100%" }}
-                          animate={{ width: `${(elonLiquidity / 12420201) * 100}%` }}
+                          animate={{ width: `${(elonLiquidity / 1000000) * 100}%` }}
                           transition={{ type: "spring", stiffness: 100 }}
                         />
                       </div>
@@ -233,14 +246,18 @@ export default function AgentFightClub() {
 
                     {/* Character Image */}
                     <div 
-                      className="relative"
+                      className="relative transition-all duration-300 cursor-pointer"
                       onMouseEnter={() => setHoveredChar("ELON")}
                       onMouseLeave={() => setHoveredChar(null)}
                     >
                       <img 
-                        src="/musk_pixel.png" 
+                        src="/elon_pixel.png" 
                         alt="Elon Musk" 
-                        className="w-48 sm:w-64 md:w-80 h-auto border-4 border-cyan-500/50 hover:border-cyan-400 transition-all"
+                        className={`w-48 sm:w-64 md:w-80 h-auto transition-all duration-300 ${
+                          hoveredChar === "ELON" 
+                            ? "scale-110 drop-shadow-[0_0_30px_rgba(34,211,238,0.8)]" 
+                            : ""
+                        }`}
                       />
                       
                       {/* Hover Stats Card */}
@@ -248,13 +265,20 @@ export default function AgentFightClub() {
                         <motion.div
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
-                          className="absolute left-full top-1/4 ml-4 bg-slate-900/95 border-2 border-cyan-400 p-3 text-xs font-mono whitespace-nowrap shadow-lg"
+                          className="absolute left-full top-1/4 ml-6 bg-slate-900/95 border-4 border-cyan-400 p-5 text-base font-mono whitespace-nowrap shadow-[0_0_30px_rgba(34,211,238,0.6)]"
                         >
-                          <div className="text-cyan-400 font-bold mb-1">ELON MUSK</div>
-                          <div className="text-white">Grok-3 (Beta)</div>
-                          <div className="text-gray-400 text-[10px]">Wallet: 0x...D0GE</div>
+                          <div className="text-cyan-400 font-bold mb-2 text-lg">ELON MUSK</div>
+                          <div className="text-white mb-1">Grok-3 (Beta)</div>
+                          <div className="text-gray-400 text-sm">Wallet: 0x...D0GE</div>
                         </motion.div>
                       )}
+                      
+                      {/* NO Label Under Musk */}
+                      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+                        <span className="text-cyan-400 font-bold text-3xl font-press-start drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">
+                          NO
+                        </span>
+                      </div>
                     </div>
                   </div>
 
@@ -271,25 +295,34 @@ export default function AgentFightClub() {
                       <div className="text-white text-xs leading-relaxed">
                         {currentDialogue.text}
                       </div>
-                      <div className="text-gray-500 text-[10px] mt-2">
-                        [Press SPACE to continue]
-                      </div>
                     </motion.div>
                   )}
 
                   {/* Marx Character */}
                   <div className="flex flex-col items-center relative">
                     {/* Liquidity Bar */}
-                    <div className="mb-4 w-48 sm:w-64">
-                      <div className="flex justify-between text-[10px] mb-1">
+                    <div 
+                      className="mb-4 w-48 sm:w-64 cursor-pointer"
+                      onMouseEnter={() => setHoveredLiquidity("MARX")}
+                      onMouseLeave={() => setHoveredLiquidity(null)}
+                    >
+                      <div className={`flex justify-between mb-1 transition-all duration-300 ${
+                        hoveredLiquidity === "MARX" 
+                          ? "text-base font-bold drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]" 
+                          : "text-sm font-bold"
+                      }`}>
                         <span className="text-red-500 font-mono">LIQUIDITY</span>
                         <span className="text-red-500 font-mono">{formatMoney(marxLiquidity)}</span>
                       </div>
-                      <div className="h-4 bg-slate-900 border-2 border-red-500 relative overflow-hidden">
+                      <div className={`bg-slate-900 border-red-500 relative overflow-hidden transition-all duration-300 ${
+                        hoveredLiquidity === "MARX"
+                          ? "h-5 border-4 scale-110 shadow-[0_0_20px_rgba(239,68,68,0.6)]"
+                          : "h-4 border-2"
+                      }`}>
                         <motion.div 
                           className="h-full bg-gradient-to-r from-red-800 to-red-500"
                           initial={{ width: "100%" }}
-                          animate={{ width: `${(marxLiquidity / 22375411) * 100}%` }}
+                          animate={{ width: `${(marxLiquidity / 1000000) * 100}%` }}
                           transition={{ type: "spring", stiffness: 100 }}
                         />
                       </div>
@@ -297,14 +330,18 @@ export default function AgentFightClub() {
 
                     {/* Character Image */}
                     <div 
-                      className="relative"
+                      className="relative transition-all duration-300 cursor-pointer"
                       onMouseEnter={() => setHoveredChar("MARX")}
                       onMouseLeave={() => setHoveredChar(null)}
                     >
                       <img 
                         src="/marx_pixel.png" 
                         alt="Karl Marx" 
-                        className="w-48 sm:w-64 md:w-80 h-auto border-4 border-red-500/50 hover:border-red-400 transition-all"
+                        className={`w-42 sm:w-56 md:w-70 h-auto transition-all duration-300 ${
+                          hoveredChar === "MARX" 
+                            ? "scale-110 drop-shadow-[0_0_30px_rgba(239,68,68,0.8)]" 
+                            : ""
+                        }`}
                       />
                       
                       {/* Hover Stats Card */}
@@ -312,51 +349,63 @@ export default function AgentFightClub() {
                         <motion.div
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
-                          className="absolute right-full top-1/4 mr-4 bg-slate-900/95 border-2 border-red-500 p-3 text-xs font-mono whitespace-nowrap shadow-lg"
+                          className="absolute right-full top-1/4 mr-6 bg-slate-900/95 border-4 border-red-500 p-5 text-base font-mono whitespace-nowrap shadow-[0_0_30px_rgba(239,68,68,0.6)]"
                         >
-                          <div className="text-red-500 font-bold mb-1">KARL MARX</div>
-                          <div className="text-white">Llama-3-70B</div>
-                          <div className="text-gray-400 text-[10px]">Wallet: 0x...RED1</div>
+                          <div className="text-red-500 font-bold mb-2 text-lg">KARL MARX</div>
+                          <div className="text-white mb-1">Llama-3-70B</div>
+                          <div className="text-gray-400 text-sm">Wallet: 0x...RED1</div>
                         </motion.div>
                       )}
+                      
+                      {/* YES Label Under Marx */}
+                      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+                        <span className="text-red-500 font-bold text-3xl font-press-start drop-shadow-[0_0_10px_rgba(239,68,68,0.8)]">
+                          YES
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Betting Footer */}
-                <div className="w-full max-w-4xl flex items-center justify-between gap-4 px-4">
-                  {/* Bet on Musk */}
-                  <div className="flex items-center gap-3">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-6 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold border-2 border-cyan-400 text-xs sm:text-sm"
-                    >
-                      [ BET ON MUSK ]
-                    </motion.button>
-                    <div className="text-cyan-400 font-mono text-sm sm:text-base">
-                      {formatMoney(elonLiquidity)}
+                {/* Betting Footer Bar */}
+                <div className="w-full">
+                  <div className="relative h-20 flex items-center">
+                    {/* Background Bar */}
+                    <div className="absolute inset-0 flex">
+                      {/* Musk Side (Cyan) */}
+                      <div 
+                        className="bg-cyan-600 border-y-4 border-l-4 border-cyan-400 flex items-center justify-between px-6"
+                        style={{ width: `${(12420201 / (12420201 + 22375411)) * 100}%` }}
+                      >
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="px-6 py-3 bg-cyan-700 hover:bg-cyan-600 text-white font-bold border-2 border-cyan-300 text-xs sm:text-sm shadow-lg"
+                        >
+                          BET ON MUSK
+                        </motion.button>
+                        <div className="text-white font-mono text-lg font-bold">
+                          {formatMoney(12420201)}
+                        </div>
+                      </div>
+                      
+                      {/* Marx Side (Red) */}
+                      <div 
+                        className="bg-red-600 border-y-4 border-r-4 border-red-400 flex items-center justify-between px-6"
+                        style={{ width: `${(22375411 / (12420201 + 22375411)) * 100}%` }}
+                      >
+                        <div className="text-white font-mono text-lg font-bold">
+                          {formatMoney(22375411)}
+                        </div>
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="px-6 py-3 bg-red-700 hover:bg-red-600 text-white font-bold border-2 border-red-300 text-xs sm:text-sm shadow-lg"
+                        >
+                          BET ON MARX
+                        </motion.button>
+                      </div>
                     </div>
-                  </div>
-
-                  {/* VS Indicator */}
-                  <div className="flex items-center gap-2">
-                    <span className="text-cyan-400 font-bold text-lg">NO</span>
-                    <span className="text-red-500 font-bold text-lg">YES</span>
-                  </div>
-
-                  {/* Bet on Marx */}
-                  <div className="flex items-center gap-3">
-                    <div className="text-red-500 font-mono text-sm sm:text-base">
-                      {formatMoney(marxLiquidity)}
-                    </div>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-bold border-2 border-red-400 text-xs sm:text-sm"
-                    >
-                      [ BET ON MARX ]
-                    </motion.button>
                   </div>
                 </div>
               </div>
